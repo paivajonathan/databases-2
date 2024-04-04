@@ -134,13 +134,13 @@ select * from itens_venda where num_venda = 3;
 select *, quantidade * valor_unit as valor_total from itens_venda;
 
 -- n)
-select * from produto where nome = 'a%';
+select * from produto where nome like 'a%';
 
 -- o)
-select * from cliente where nome = '%iv%';
+select * from cliente where nome like '%iv%';
 
 -- p)
-select * from cliente where nome = '%l';
+select * from cliente where nome like '%l';
 
 -- q)
 select * from produto order by nome asc;
