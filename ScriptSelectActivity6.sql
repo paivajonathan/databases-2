@@ -80,5 +80,29 @@ select * from usuario where idusuario in (
 );
 
 -- f)
--- todo
+select * from usuario where idusuario in (
+  select idusuario from usuarioGrupo where idgrupo in (
+    select idGrupo from grupo where nomegrupo in ('alunos', 'professores')
+  )
+);
+
+-- g)
+select * from usuario where idusuario not in (
+  select userorigem from mensagem
+);
+
+-- h)
+select nome from usuario where idusuario = (
+  select userorigem from mensagem where idmensagem = (
+    select min(idmensagem) from mensagem
+  )
+);
+
+-- i)
+select 
+  mensagem.idMensagem,
+  (select nome from usuario where idusuario = mensagem.userOrigem) as usuarioOrigemNome,
+  (select nome from usuario where idusuario = mensagem.userOrigem) as usuarioDestinoNome
+from mensagem;
+	
 
